@@ -1,0 +1,51 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- <link rel="stylesheet" href="./css/reset.css"> -->
+    <!-- <link rel="stylesheet" href="./css/960_24_col.css"> -->
+    <link rel="stylesheet" href="./css/style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@200&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <title>Login</title>
+</head>
+<body>
+    <div class="body_container">
+        <div class="left_area"></div>
+        <div class="right_area">
+            <div class="login_box">
+                <label style="font-size: 40px;"><b>Login to Todo-List</b></label>
+                <br>
+                <form id="loginForm" style="font-size: 20px;margin-top: 20px;">
+                    <label for="">Email</label><br>
+                    <input class="input_box" id="email" type="text" name="email" pattern="^\w+([-+.']\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*$" required><br>
+                    <label for="">Password</label><br>
+                    <input class="input_box" id="password" type="password" name="password" required><br>
+                    <button class="form_button" type="submit">Login</button>
+                    <button class="form_button" id="show_modal" type="submit">SignUp</button>
+                </form>
+                <h2 id="wrong" style="display: none;font-size: 20px;">Wrong email or password</h2>
+                <h3 style="display: none;font-size: 20px;" id="status"> Error signing up</h3>
+            </div>
+        </div>
+    </div>
+    <div class="modal" id="show_form">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <form style="font-size: 20px;">
+                <label >Name : </label>
+                <input class="input_box" type="text" id="sname" pattern="^[A-Za-zÀ-ÿ ,.'-]+$" required><br>
+                <label >Email : </label>
+                <input class="input_box" type="text" id="semail" pattern="^\w+([-+.']\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*$" required><br>
+                <label >Password : </label>
+                <input class="input_box" type="password" id="spassword" pattern=".{8,}" required><br>
+                <button class="form_button"  type="submit" id="signUp">SignUp</button>
+              </form>
+        </div>
+    </div>
+    <script type="text/javascript" src="./scripts/main.js"></script>
+</body>
+</html>
