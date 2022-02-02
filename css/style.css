@@ -1,6 +1,6 @@
 
 .left_area{
-    background: url('../img/cyan-bg.jpg');
+    background: url('../img/gray-bg.png');
 }
 
 .right_area{
@@ -11,7 +11,7 @@
 .body_container{
     display: grid;
     grid-template-columns: 1fr 1fr;
-    grid-template-rows: 1000px;
+    grid-template-rows: 950px;
 }
 
 label{

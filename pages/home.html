@@ -3,13 +3,99 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="../css/style.css">
+    <!-- <link rel="stylesheet" href="../css/reset.css"> -->
+    <link rel="stylesheet" href="../css/home.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@200&display=swap" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
     <title>Todo-List</title>
 </head>
 <body>
+    <div class="wrapper">
+        <nav class="main-nav">
+            <h1 id="todo-head">Todo-List</h1>
+            <ul>
+                
+                <li>Home</li>
+                <li>About</li>
+                <li id="logout"><a href="../index.html" onclick="logout();">Logout</a></li>
+            </ul>
+        </nav>
+        <div class="content">
+            <div class="flexbox-container">
+                <input type="text" id="search" onkeyup="searchBar()" placeholder="Search Todos">
+            </div>
+            <div class="flexbox-container">
+                <table id="myTable">
+                    <tr>
+                        <th>Status</th>
+                        <th>Serial No.</th>
+                        <th>Name</th>
+                        <th onclick="sortTable(0);">Due</th>
+                        <th onclick="sortTable(1);">Priority</th>
+                        <th>Actions</th>
+                    </tr>
+                    <tbody id="todo"></tbody>
+                </table>
+            </div>
+            <div class="flexbox-container" style="align-items: center;">
+                <button type="submit" style="display: block; margin-left: 20px; width: 200px;" id="addTodo">Add to List</button>
+            </div>
+        </div>
+        <aside class="side">
+            <ul>
+                <li>Home</li>
+                <li>asdads</li>
+                <li>asdadas</li>
+            </ul>
+        </aside>
+        <div class="flexbox-container modal" id="view" style="display: none;">
+            <div class="modal-content">
+                <span class="close">&times;</span>
+                <label>Name</label>
+                <input id="name" type="text" name="name" required><br>
+                <label>Description : </label>
+                <input id="des" type="text" name="des" required><br>
+                <label>Priority</label>
+                <input id="priority" type="number" min="1" max="3" required><br>
+                <label>Date</label>
+                <input id="date" type="date" name="date" required> <br>
+                <label>Time</label>
+                <input id="time" type="time" name="time" required><br>
+                <input id="check" type="checkbox" name="check">
+                <label>Check</label>
+                <button type="submit" id="add" value="Add"> Add </button> <br>
+            </div>
+        </div>
+        <div class="flexbox-container modal" id="update" style="display: none;">
+            <div class="modal-content">
+                <span class="close">&times;</span>
+                <label>Name</label>
+                <input id="name2" type="text" name="name2" required><br>
+                <label>Description : </label>
+                <input id="des2" type="text" name="des2" required><br>
+                <label>Priority</label>
+                <input id="priority2" type="number" min="1" max="3" required><br>
+                <label>Date</label>
+                <input id="date2" type="date" name="date" required>
+                <label>Time</label>
+                <input id="time2" type="time" name="time" required><br>
+                <input id="check2" type="checkbox" name="check2">
+                <label>Check</label>
+                <button type="submit" id="add2" value="Add"> Update </button>
+            </div>
+        </div>
+        <div class="flexbox-container modal" id="delete" style="display: none;">
+            <div class="modal-content">
+                <span class="close">&times;</span>
+                <p>Are you sure you want to delete?</p>
+                <button type="submit" id="deletePermanent"><b>YES</b></button>
+            </div>
+        </div>
+    </div>
     
 </body>
+<script type="text/javascript" src="../scripts/home.js"></script>
 </html>

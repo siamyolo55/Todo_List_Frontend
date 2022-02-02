@@ -1,0 +1,203 @@
+/* Defining the grid */
+
+.content {
+    grid-area: content;
+}
+.main-nav {
+    grid-area: nav;
+    background-color: white;
+}
+.side {
+    grid-area: sidebar;
+    background-color: white;
+}
+
+.main-nav ul{
+    display: flex;
+    flex-direction: row;
+    list-style-type: none;
+    justify-content: flex-end;
+}
+
+.main-nav ul li{
+    padding: 0 10px;
+    font-size: 20px;
+    margin-top: -70px;
+}
+
+#todo-head{
+    padding: 0 10px;
+    font-size: 35px;
+    margin-top: 35px;
+}
+
+.side ul{
+    display: flex;
+    flex-direction: column;
+    list-style-type: none;
+    justify-content: flex-end;
+}
+
+.side ul li{
+    padding: 0 10px;
+}
+
+.wrapper{
+    display: grid;
+    gap: 20px;
+    grid-template-areas: 
+    "nav"
+    "content"
+    "sidebar";
+}
+
+@media (min-width: 500px) {
+    .wrapper {
+      grid-template-columns: 1fr 4fr;
+      grid-template-areas:
+        "nav    nav"
+        "sidebar content";
+    }
+     nav ul {
+        flex-direction: column;  
+    }
+}
+
+
+/* copy pasta */
+
+body{
+    background-color: #708090;
+    font-family: 'Poppins',sans-serif;
+}
+
+.flexbox-container{
+    display: flex;
+    justify-content: center;
+    margin-right: 450px;
+}
+
+.flexbox-container > button{
+    width: 24.2%;
+    padding: 12px 20px;
+    margin: 8px 0;
+    box-sizing: border-box;
+}
+
+button[type=click].edit{
+    width: 100px;
+    height: 30px;
+    background-image: url(../img/edit.jpg);
+    border: 1px solid gray;
+}
+
+i{
+    width: 100px;
+    height: 30px;
+    margin-top: 15px;
+}
+
+button[type=click].delete{
+    width: 100px;
+    height: 30px;
+    background-image: url(../img/delete.jpg);
+    border: 1px solid gray;
+}
+
+
+input[type=text],input[type=password],button[type=submit]{
+    width: 100%;
+    padding: 12px 20px;
+    margin: 8px 0;
+    box-sizing: border-box;
+    border-radius: 7px;
+}
+
+
+#search{
+    width: 60.25%;
+    height: 50px;
+    margin-left: 20px;
+    margin-bottom: 30px;
+    font-size: 20px;
+}
+
+
+
+/* Modal Content */
+
+.modal {
+    display: none; /* Hidden by default */
+    position: fixed; /* Stay in place */
+    z-index: 1; /* Sit on top */
+    padding-top: 100px; /* Location of the box */
+    left: 0;
+    top: 0;
+    width: 100%; /* Full width */
+    height: 100%; /* Full height */
+    overflow: auto; /* Enable scroll if needed */
+    background-color: rgb(0,0,0); /* Fallback color */
+    background-color: rgba(0,0,0,0.7); /* Black w/ opacity */
+}
+
+.modal-content {
+    background-color: #fefefe;
+    margin: auto;
+    padding: 20px;
+    border: 1px solid #888;
+    width: 20%;
+    margin-top: 150px;
+}
+  
+  /* The Close Button */
+.close {
+    color: #aaaaaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+}
+  
+.close:hover,
+.close:focus {
+    color: #000;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+/* Table section */
+
+table{
+    border: 1px; 
+    width: 60%;
+    height: 50px;
+    text-align: center;
+    margin-left: 23px;
+    border-collapse: collapse;
+    border: 2px solid #D3D3D3;
+}
+th{
+    border: 1px;
+    width: 100px;
+    height: 50px;
+}
+td > input[type=checkbox]{
+    border: 1px;
+    width: 40px;
+}
+tr{
+    background-color: white;
+    border: 1px solid #D3D3D3;
+    text-align: left;
+    height: 50px;
+}
+
+th {
+    background-color: white;
+    color: black;
+}
+
+#logout{
+    height: 30px;
+    width: 100px;
+}
+
