@@ -1,16 +1,36 @@
 /* Defining the grid */
+ * {
+     margin: 0;
+     padding: 0;
+     outline: 0;
+ }
 
 .content {
     grid-area: content;
 }
 .main-nav {
     grid-area: nav;
-    background-color: white;
+    background-color: rgb(65, 89, 135);
+    color: #fafbfc;
+    height: 100px;
+    width: 100%;
+    margin-top: -15px ;
 }
 .side {
     grid-area: sidebar;
-    background-color: white;
+    background-color: #fafafa;
 }
+
+/* .side ul{
+    display: flex;
+    flex-direction: column;
+    justify-content: end;
+}
+
+.side ul li{
+    padding: 5px 10px;
+    font-size: 20px;
+} */
 
 .main-nav ul{
     display: flex;
@@ -26,9 +46,15 @@
 }
 
 #todo-head{
-    padding: 0 10px;
+    padding: 6px 40px;
     font-size: 35px;
-    margin-top: 35px;
+    margin-top: 25px;
+}
+
+#nav-content{
+    padding: 0 20px;
+    font-size: 35px;
+    margin-top: 20px;
 }
 
 .side ul{
@@ -49,11 +75,12 @@
     "nav"
     "content"
     "sidebar";
+    grid-gap: 0;
 }
 
 @media (min-width: 500px) {
     .wrapper {
-      grid-template-columns: 1fr 4fr;
+      grid-template-columns: 1fr 5fr;
       grid-template-areas:
         "nav    nav"
         "sidebar content";
@@ -67,7 +94,7 @@
 /* copy pasta */
 
 body{
-    background-color: #708090;
+    background-color: #FFFFFF;
     font-family: 'Poppins',sans-serif;
 }
 
@@ -105,7 +132,7 @@ button[type=click].delete{
 }
 
 
-input[type=text],input[type=password],button[type=submit]{
+input[type=text],input[type=password],input[type=date],input[type=number],input[type=time]{
     width: 100%;
     padding: 12px 20px;
     margin: 8px 0;
@@ -113,13 +140,30 @@ input[type=text],input[type=password],button[type=submit]{
     border-radius: 7px;
 }
 
+button[type=submit]{
+    width: 100%;
+    padding: 12px 20px;
+    margin: 8px 0;
+    box-sizing: border-box;
+    border-radius: 7px;
+    background-color: #415987;
+    color: white ;
+}
+
 
 #search{
-    width: 60.25%;
+    width: 69.6%;
     height: 50px;
-    margin-left: 20px;
     margin-bottom: 30px;
     font-size: 20px;
+    padding-left:  55px;
+    padding-right: 55px;
+}
+
+#icon{
+    position : absolute;
+    top: 300px;
+    right: 100px;
 }
 
 
@@ -129,7 +173,7 @@ input[type=text],input[type=password],button[type=submit]{
 .modal {
     display: none; /* Hidden by default */
     position: fixed; /* Stay in place */
-    z-index: 1; /* Sit on top */
+    z-index: 2; /* Sit on top */
     padding-top: 100px; /* Location of the box */
     left: 0;
     top: 0;
@@ -168,36 +212,62 @@ input[type=text],input[type=password],button[type=submit]{
 
 table{
     border: 1px; 
-    width: 60%;
+    width: 100%;
     height: 50px;
     text-align: center;
     margin-left: 23px;
     border-collapse: collapse;
     border: 2px solid #D3D3D3;
+    color: #313131;
+    padding-left: 55px;
+    padding-right: 55px;
+    max-width: 800px;
+    margin: 0 auto;
+    position:  relative;
+    z-index: 1;
 }
 th{
     border: 1px;
     width: 100px;
     height: 50px;
+    color: #313131;
 }
 td > input[type=checkbox]{
     border: 1px;
     width: 40px;
 }
+#box{
+    text-align: center;
+    width: 100px;
+}
+/* td:hover{
+    cursor: pointer;
+} */
 tr{
     background-color: white;
     border: 1px solid #D3D3D3;
     text-align: left;
     height: 50px;
+    color: #313131;
 }
 
 th {
     background-color: white;
-    color: black;
+    color: #313131;
 }
 
 #logout{
     height: 30px;
     width: 100px;
+    color: white;
+}
+/* #logout:hover,i:hover,#addTodo:hover{
+    cursor: pointer;
+} */
+#deletePermanent:hover{
+    background-color: red;
 }
 
+button:hover,a:hover,i:hover{
+    cursor: pointer;
+}

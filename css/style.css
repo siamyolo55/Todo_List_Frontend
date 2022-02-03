@@ -38,7 +38,7 @@ label{
     width: 171px;
     margin-left: 3px;
     color: white;
-    background: rgb(110, 18, 110);
+    background: #415987;
 }
 
 /* The Modal (background) */
@@ -78,5 +78,9 @@ label{
 .close:focus {
     color: #000;
     text-decoration: none;
+    cursor: pointer;
+}
+
+button:hover,input:hover,a:hover{
     cursor: pointer;
 }

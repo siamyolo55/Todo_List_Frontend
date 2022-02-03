@@ -53,9 +53,6 @@ async function userInfo(){
     else{
         console.log("wrong info")
         document.getElementById('wrong').style.display = "block"
-        return setTimeout(() => {
-            document.getElementById('wrong').style.display = "none"
-        }, 2000);
     }
 }
 

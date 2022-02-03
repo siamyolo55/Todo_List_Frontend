@@ -16,25 +16,25 @@
     <div class="wrapper">
         <nav class="main-nav">
             <h1 id="todo-head">Todo-List</h1>
-            <ul>
-                
+            <ul id="nav-content">   
                 <li>Home</li>
                 <li>About</li>
-                <li id="logout"><a href="../index.html" onclick="logout();">Logout</a></li>
+                <li><a id="logout" href="../index.html" onclick="logout();">Logout</a></li>
             </ul>
         </nav>
         <div class="content">
+            <!-- <i class="fas fa-search" id="icon"></i> -->
             <div class="flexbox-container">
                 <input type="text" id="search" onkeyup="searchBar()" placeholder="Search Todos">
             </div>
             <div class="flexbox-container">
                 <table id="myTable">
                     <tr>
-                        <th>Status</th>
+                        <th style="text-align: center;">Status</th>
                         <th>Serial No.</th>
                         <th>Name</th>
-                        <th onclick="sortTable(0);">Due</th>
-                        <th onclick="sortTable(1);">Priority</th>
+                        <th id="dueArrow" onclick="sortTable(0);">Due <i class="fas fa-arrow-down"></i></th>
+                        <th id="priorityArrow" style="width: 180px;" onclick="sortTable(1);">Priority <i class="fas fa-arrow-down"></i></th>
                         <th>Actions</th>
                     </tr>
                     <tbody id="todo"></tbody>
@@ -47,18 +47,17 @@
         <aside class="side">
             <ul>
                 <li>Home</li>
-                <li>asdads</li>
-                <li>asdadas</li>
+                <li>About</li>
             </ul>
         </aside>
         <div class="flexbox-container modal" id="view" style="display: none;">
             <div class="modal-content">
                 <span class="close">&times;</span>
-                <label>Name</label>
+                <label>Name : </label>
                 <input id="name" type="text" name="name" required><br>
                 <label>Description : </label>
                 <input id="des" type="text" name="des" required><br>
-                <label>Priority</label>
+                <label>Priority  </label>
                 <input id="priority" type="number" min="1" max="3" required><br>
                 <label>Date</label>
                 <input id="date" type="date" name="date" required> <br>
@@ -88,7 +87,7 @@
             </div>
         </div>
         <div class="flexbox-container modal" id="delete" style="display: none;">
-            <div class="modal-content">
+            <div class="modal-content" style="margin-top: 300px;">
                 <span class="close">&times;</span>
                 <p>Are you sure you want to delete?</p>
                 <button type="submit" id="deletePermanent"><b>YES</b></button>

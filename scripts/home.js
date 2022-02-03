@@ -6,6 +6,8 @@
 let uniq = 0
 let priorityAsc = true
 let dateAsc = true
+let dueArrowDir = false
+let priorityArrowDir = false
 
 // open Add Todo List Modal
 let modal = document.getElementById('view')
@@ -67,6 +69,22 @@ let deleteTodo = document.getElementById('deletePermanent')
 let userData = JSON.parse(localStorage.getItem('user-info'))
 let todos = userData.todos
 
+// arrow direction sortwise
+
+/* let dueArrow = document.getElementById('dueArrow')
+dueArrow.addEventListener('click',(e) => {
+    e.preventDefault()
+    
+})
+
+let priorityArrow = document.getElementById('priorityArrow')
+
+priorityArrow.addEventListener('click',(e) => {
+    e.preventDefault()
+    
+})
+ */
+
 
 
 // fucntions
@@ -101,9 +119,9 @@ async function fillTable(flag = false) {
         else if (todos[i].priority == 2) priority = 'Mid'
         else priority = 'High'
         let row = `<tr>
-                        <td><input type="checkbox" id="c${i}" onclick="checkClick('${todos[i].uniq}',${i})" ${todos[i].check === true ? 'checked' : ''}></td>
-                        <td>${i + 1}</td>
-                        <td style="width: 170px">${todos[i].event}</td>
+                        <td id="box"><input type="checkbox" id="c${i}" onclick="checkClick('${todos[i].uniq}',${i})" ${todos[i].check === true ? 'checked' : ''}></td>
+                        <td style="width: 100px">${i + 1}</td>
+                        <td style="width: 170px;margin-left: 40px">${todos[i].event}</td>
                         <td style="width: 250px">${due}</td>
                         <td>${priority}</td>
                         <td style="width: 50px; display:flex;justify-content:space-between;">    
@@ -257,6 +275,14 @@ async function sortTable(n) {
         if (!dateAsc)
             todos.reverse()
         dateAsc = !dateAsc
+        if(!dueArrowDir){
+            dueArrow.innerHTML = `Due <i class="fas fa-arrow-up"></i>`
+            dueArrowDir = true
+        }
+        else{
+            dueArrow.innerHTML = `Due <i class="fas fa-arrow-down"></i>`
+            dueArrowDir = false
+        }
         let flag = true
         await fillTable(flag)
         return
@@ -275,6 +301,14 @@ async function sortTable(n) {
         if (!priorityAsc)
             todos.reverse()
         priorityAsc = !priorityAsc
+        if(!priorityArrowDir){
+            priorityArrow.innerHTML = `Priority <i class="fas fa-arrow-up"></i>`
+            priorityArrowDir  = true
+        }
+        else{
+            priorityArrow.innerHTML = `Priority <i class="fas fa-arrow-down"></i>`
+            priorityArrowDir  = false
+        }
         let flag = true
         await fillTable(flag)
         return
