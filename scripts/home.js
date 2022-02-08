@@ -149,7 +149,6 @@ async function fillTable(flag = false) {
                     </tr>`
         table.innerHTML += row
     }
-
 }
 
 async function checkClick(uni, i) {

@@ -46,13 +46,32 @@ async function userInfo(){
         console.log('reached here')
         localStorage.clear()
         localStorage.setItem("user-info",JSON.stringify(result.data.userData))
+        let snackbar = document.getElementById('snackbar')
+        snackbar.className = "show"
+        snackbar.style.backgroundColor = "green"
+        snackbar.style.color = "white"
+        snackbar.style.fontFamily = "'Poppins',sans-serif"
+        snackbar.style.borderRadius = '10px'
+        snackbar.innerHTML = `<i class="far fa-check-circle"></i> Logging In`
+        setTimeout(function(){
+            snackbar.className = snackbar.className.replace("show","")
+        },3000)
         setTimeout(() => {
             window.location.href = "pages/home.html"
         },1500)
     }
     else{
-        console.log("wrong info")
-        document.getElementById('wrong').style.display = "block"
+        //document.getElementById('wrong').style.display = "block"
+        let snackbar = document.getElementById('snackbar')
+        snackbar.className = "show"
+        snackbar.style.backgroundColor = "red"
+        snackbar.style.color = "white"
+        snackbar.style.borderRadius = '10px'
+        snackbar.style.fontFamily = "'Poppins',sans-serif"
+        snackbar.innerHTML = `<i class="far fa-times-circle"></i> Wrong Username or Password`
+        setTimeout(function(){
+            snackbar.className = snackbar.className.replace("show","")
+        },3000)
     }
 }
 
@@ -62,6 +81,7 @@ async function userInfo(){
 login_form.addEventListener('submit', async (e) => {
     e.preventDefault()
     await userInfo()
+
 })
 
 sign_up.addEventListener('click',async (e)=>{
@@ -84,17 +104,31 @@ sign_up.addEventListener('click',async (e)=>{
     modal_form_signup.style.display = "none"
 
     if(result.status!=201 || result.data.length<=0){
-        document.getElementById('status').style.display = "block"
-        return setTimeout(() => {
-            document.getElementById('status').style.display = "none"
-        }, 2000);
+        //document.getElementById('status').style.display = "block"
+        let snackbar = document.getElementById('snackbar')
+        snackbar.className = "show"
+        snackbar.style.backgroundColor = "red"
+        snackbar.style.color = "white"
+        snackbar.style.borderRadius = '10px'
+        snackbar.style.fontFamily = "'Poppins',sans-serif"
+        snackbar.innerHTML = `<i class="far fa-times-circle"></i> Error Signing Up`
+        setTimeout(function(){
+            snackbar.className = snackbar.className.replace("show","")
+        },3000)
     }
     else{
-        let change = document.getElementById('status')
-        change.textContent = 'SignUp successful'
-        document.getElementById('status').style.display = "block"
-        return setTimeout(() => {
-            document.getElementById('status').style.display = "none"
-        },2000)
+        //let change = document.getElementById('status')
+        //change.textContent = 'SignUp successful'
+        //document.getElementById('status').style.display = "block"
+        let snackbar = document.getElementById('snackbar')
+        snackbar.className = "show"
+        snackbar.style.backgroundColor = "green"
+        snackbar.style.fontFamily = "'Poppins',sans-serif"
+        snackbar.style.color = "white"
+        snackbar.style.borderRadius = '10px'
+        snackbar.innerHTML = `<i class="far fa-check-circle"></i> SignUp Successful`
+        setTimeout(function(){
+            snackbar.className = snackbar.className.replace("show","")
+        },3000)
     }
 })
