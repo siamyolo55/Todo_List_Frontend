@@ -3,7 +3,6 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <!-- <link rel="stylesheet" href="../css/reset.css"> -->
     <link rel="stylesheet" href="../css/home.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -23,19 +22,18 @@
             </ul>
         </nav>
         <div class="content">
-            <!-- <i class="fas fa-search" id="icon"></i> -->
             <div class="flexbox-container">
                 <input type="text" id="search" onkeyup="searchBar()" placeholder="Search Todos">
             </div>
             <div class="flexbox-container">
                 <table id="myTable">
                     <tr>
-                        <th style="text-align: center;">Status</th>
-                        <th>Serial No.</th>
-                        <th>Name</th>
-                        <th id="dueArrow" onclick="sortTable(0);">Due <i class="fas fa-arrow-down"></i></th>
-                        <th id="priorityArrow" style="width: 180px;" onclick="sortTable(1);">Priority <i class="fas fa-arrow-down"></i></th>
-                        <th>Actions</th>
+                        <th style="text-align: center; width:200px">Status</th>
+                        <th style="width: 200px;text-align: left;">Serial No.</th>
+                        <th style="text-align: left;">Name</th>
+                        <th style="text-align: left;" id="dueArrow" onclick="sortTable(0);" style="width: 350px;">Due <i class="fas fa-arrow-down"></i></th>
+                        <th style="text-align: left;" id="priorityArrow" style="width: 400px;" onclick="sortTable(1);">Priority <i class="fas fa-arrow-down"></i></th>
+                        <th style="text-align: left;">Actions</th>
                     </tr>
                     <tbody id="todo"></tbody>
                 </table>
@@ -50,7 +48,7 @@
                 <li>About</li>
             </ul>
         </aside>
-        <div class="flexbox-container modal" id="view" style="display: none;">
+        <div class="modal flexbox-container" id="view" style="display: none;">
             <div class="modal-content">
                 <span class="close">&times;</span>
                 <label>Name : </label>
@@ -58,7 +56,11 @@
                 <label>Description : </label>
                 <input id="des" type="text" name="des" required><br>
                 <label>Priority  </label>
-                <input id="priority" type="number" min="1" max="3" required><br>
+                <select id="priority" required>
+                    <option value="1">Low</option>
+                    <option value="2">Mid</option>
+                    <option value="3">High</option>
+                </select>
                 <label>Date</label>
                 <input id="date" type="date" name="date" required> <br>
                 <label>Time</label>
@@ -68,7 +70,7 @@
                 <button type="submit" id="add" value="Add"> Add </button> <br>
             </div>
         </div>
-        <div class="flexbox-container modal" id="update" style="display: none;">
+        <div class="modal flexbox-container" id="update" style="display: none;">
             <div class="modal-content">
                 <span class="close">&times;</span>
                 <label>Name</label>
@@ -76,7 +78,11 @@
                 <label>Description : </label>
                 <input id="des2" type="text" name="des2" required><br>
                 <label>Priority</label>
-                <input id="priority2" type="number" min="1" max="3" required><br>
+                <select id="priority2" required>
+                    <option value="1">Low</option>
+                    <option value="2">Mid</option>
+                    <option value="3">High</option>
+                </select>
                 <label>Date</label>
                 <input id="date2" type="date" name="date" required>
                 <label>Time</label>
@@ -87,7 +93,7 @@
             </div>
         </div>
         <div class="flexbox-container modal" id="delete" style="display: none;">
-            <div class="modal-content" style="margin-top: 300px;">
+            <div class="modal-content" style="margin-top: 150px;">
                 <span class="close">&times;</span>
                 <p>Are you sure you want to delete?</p>
                 <button type="submit" id="deletePermanent"><b>YES</b></button>

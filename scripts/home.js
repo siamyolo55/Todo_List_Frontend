@@ -65,26 +65,8 @@ let updateTodoToDb = document.getElementById('add2')
 let deleteTodo = document.getElementById('deletePermanent')
 
 // load data from local storage
-
 let userData = JSON.parse(localStorage.getItem('user-info'))
 let todos = userData.todos
-
-// arrow direction sortwise
-
-/* let dueArrow = document.getElementById('dueArrow')
-dueArrow.addEventListener('click',(e) => {
-    e.preventDefault()
-    
-})
-
-let priorityArrow = document.getElementById('priorityArrow')
-
-priorityArrow.addEventListener('click',(e) => {
-    e.preventDefault()
-    
-})
- */
-
 
 
 // fucntions
@@ -97,16 +79,12 @@ async function fillTable(flag = false) {
             email: userData.email,
             password: userData.password
         })
-        console.log('filling')
         // RECEIVED ALL DATA
         todos = rlt.data.userData.todos
     }
 
     if (todos == undefined)
         return
-
-    // <button class="delete" type="click" id="d${i}" onclick="deleteEvent('${todos[i].uniq}');">Delete</button>
-    // <button class="edit" type="click" id="u${i}" onclick="updateEvent('${todos[i].uniq}');">Update</button>
 
     let table = document.getElementById('todo')
     table.innerHTML = ""
@@ -115,15 +93,25 @@ async function fillTable(flag = false) {
         if (todos[i].check == true) continue
         let due = todos[i].date + ' ' + todos[i].time
         let priority
-        if (todos[i].priority == 1) priority = 'Low'
-        else if (todos[i].priority == 2) priority = 'Mid'
-        else priority = 'High'
+        let color
+        if (todos[i].priority == 1){
+            priority = 'Low'
+            color = '#246fe0'
+        }
+        else if (todos[i].priority == 2){
+            priority = 'Mid'
+            color = '#eb8909'
+        }
+        else{
+            priority = 'High'
+            color = '#b03d32'
+        }
         let row = `<tr>
                         <td id="box"><input type="checkbox" id="c${i}" onclick="checkClick('${todos[i].uniq}',${i})" ${todos[i].check === true ? 'checked' : ''}></td>
-                        <td style="width: 100px">${i + 1}</td>
-                        <td style="width: 170px;margin-left: 40px">${todos[i].event}</td>
-                        <td style="width: 250px">${due}</td>
-                        <td>${priority}</td>
+                        <td style="width: 100px;text-align:left;">${i + 1}</td>
+                        <td style="width: 170px;margin-left: 40px;text-align:left;">${todos[i].event}</td>
+                        <td style="width: 250px;text-align:left;">${due}</td>
+                        <td style="width: 200px;text-align:left;color:${color}"><b>${priority}</b></td>
                         <td style="width: 50px; display:flex;justify-content:space-between;">    
                             <i class="fas fa-edit" onclick="updateEvent('${todos[i].uniq}');"></i> 
                             <i class="far fa-trash-alt" onclick="deleteEvent('${todos[i].uniq}');" ></i>
@@ -135,19 +123,29 @@ async function fillTable(flag = false) {
         if (todos[i].check == false) continue
         let due = todos[i].date + ' ' + todos[i].time
         let priority
-        if (todos[i].priority == 1) priority = 'Low'
-        else if (todos[i].priority == 2) priority = 'Mid'
-        else priority = 'High'
+        let color
+        if (todos[i].priority == 1){
+            priority = 'Low'
+            color = '#246fe0'
+        }
+        else if (todos[i].priority == 2){
+            priority = 'Mid'
+            color = '#eb8909'
+        }
+        else{
+            priority = 'High'
+            color = '#b03d32'
+        }
         let row = `<tr>
-                        <td><input type="checkbox" id="c${i}" onclick="checkClick('${todos[i].uniq}',${i})" ${todos[i].check === true ? 'checked' : ''}></td>
-                        <td>${i + 1}</td>
-                        <td>${todos[i].event}</td>
-                        <td>${due}</td>
-                        <td>${priority}</td>
+                        <td id="box"><input type="checkbox" id="c${i}" onclick="checkClick('${todos[i].uniq}',${i})" ${todos[i].check === true ? 'checked' : ''}></td>
+                        <td style="width: 100px;text-align:left;">${i + 1}</td>
+                        <td style="width: 170px;margin-left: 40px;text-align:left;">${todos[i].event}</td>
+                        <td style="width: 250px;text-align:left;">${due}</td>
+                        <td style="width: 200px;text-align:left;color:${color}"><b>${priority}</b></td>
                         <td style="width: 50px; display:flex;justify-content:space-between;">    
                             <i class="fas fa-edit" onclick="updateEvent('${todos[i].uniq}');"></i> 
                             <i class="far fa-trash-alt" onclick="deleteEvent('${todos[i].uniq}');" ></i>
-                        </td>
+                        </td> 
                     </tr>`
         table.innerHTML += row
     }
@@ -174,10 +172,6 @@ async function addTodo() {
     let date = document.getElementById('date').value
     let check = document.getElementById('check').checked
 
-    //console.log(name,des,priority,time,check)
-
-    // TO BE UNCOMMENTED LATER
-
     let result = await axios.post('http://127.0.0.1:4000/home', {
         email: userData.email,
         event: name,
@@ -201,8 +195,6 @@ async function updateEventDb(uni) {
     let priority = document.getElementById('priority2').value
     let check = document.getElementById('check2').checked
 
-    // TO BE UNCOMMENTED LATER
-
     let result = await axios.put('http://127.0.0.1:4000/home', {
         email: userData.email,
         event: name,
@@ -219,18 +211,9 @@ async function updateEventDb(uni) {
     }
 
     document.getElementById('update').style.display = "none"
-
-    //await fillTable()
-    //location.reload()
 }
 
 async function deleteEventDb(uni) {
-    console.log(userData.email)
-    console.log(uni)
-    /*     let rlt = await axios.delete('http://127.0.0.1:4000/home',{
-            email : userData.email,
-            uniq : uni
-        }) */
     let rlt = await axios.delete(`http://127.0.0.1:4000/home?email=${userData.email}&uniq=${uni}`)
     if (rlt.status == 200) {
         console.log('weeeee')
@@ -246,11 +229,9 @@ async function sortTable(n) {
             for (let j = 0; j < len - i - 1; j++) {
                 let firstDate = new Date()
                 let date = todos[j].date.split('-')
-                //console.log(date)
                 firstDate.setFullYear(Number(date[0]), Number(date[1]), Number(date[2]))
                 let secondDate = new Date()
                 let date2 = todos[j + 1].date.split('-')
-                //console.log(date2)
                 secondDate.setFullYear(Number(date2[0]), Number(date2[1]), Number(date2[2]))
                 if (firstDate > secondDate) {
                     let temp = todos[j]
@@ -333,19 +314,24 @@ function searchBar() {
 }
 
 function updateEvent(uni) {
-    //console.log('runnig')
     uniq = uni
-    //e.preventDefault()
+    let idx
+    for(let i=0;i<todos.length;i++){
+        if(todos[i].uniq == uni)
+            idx = i
+    }
+    document.getElementById('name2').value = todos[idx].event
+    document.getElementById('des2').value = todos[idx].description
+    document.getElementById('priority2').value = todos[idx].priority
+    document.getElementById('date2').value = todos[idx].date
+    document.getElementById('time2').value = todos[idx].time
+    document.getElementById('check2').checked = todos[idx].check
     document.getElementById('update').style.display = "block"
-    //add.style.display = "none"
 }
 
 function deleteEvent(uni) {
-    //console.log('runnig')
     uniq = uni
-    //e.preventDefault()
     document.getElementById('delete').style.display = "block"
-    //add.style.display = "none"
 }
 
 function logout() {
@@ -354,8 +340,6 @@ function logout() {
 
 
 fillTable()
-
-// event listeners
 
 addTodoToDb.addEventListener('click', async (e) => {
     e.preventDefault()

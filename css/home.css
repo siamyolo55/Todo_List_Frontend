@@ -1,9 +1,9 @@
 /* Defining the grid */
- * {
-     margin: 0;
-     padding: 0;
-     outline: 0;
- }
+*{
+    margin: 0;
+    padding: 0;
+    outline: 0;
+}
 
 .content {
     grid-area: content;
@@ -18,7 +18,8 @@
 }
 .side {
     grid-area: sidebar;
-    background-color: #fafafa;
+    background-color: #E1D9D1;
+    height: calc(90vh);
 }
 
 /* .side ul{
@@ -68,6 +69,11 @@
     padding: 0 10px;
 }
 
+aside ul li{
+    margin-left: 30px;
+    margin-top: 15px;
+}
+
 .wrapper{
     display: grid;
     gap: 20px;
@@ -101,7 +107,8 @@ body{
 .flexbox-container{
     display: flex;
     justify-content: center;
-    margin-right: 450px;
+    margin-right: 200px;
+    /* margin-left: 220px; */
 }
 
 .flexbox-container > button{
@@ -122,6 +129,7 @@ i{
     width: 100px;
     height: 30px;
     margin-top: 15px;
+    text-align: left;
 }
 
 button[type=click].delete{
@@ -132,11 +140,12 @@ button[type=click].delete{
 }
 
 
-input[type=text],input[type=password],input[type=date],input[type=number],input[type=time]{
+input[type=text],input[type=password],input[type=date],input[type=number],input[type=time],#priority,#priority2{
     width: 100%;
     padding: 12px 20px;
     margin: 8px 0;
     box-sizing: border-box;
+    border: 1px solid gray;
     border-radius: 7px;
 }
 
@@ -152,12 +161,14 @@ button[type=submit]{
 
 
 #search{
-    width: 69.6%;
+    width: 75%;
     height: 50px;
     margin-bottom: 30px;
     font-size: 20px;
     padding-left:  55px;
     padding-right: 55px;
+    margin-top: 20px;
+    border-radius: 50px;
 }
 
 #icon{
@@ -173,7 +184,7 @@ button[type=submit]{
 .modal {
     display: none; /* Hidden by default */
     position: fixed; /* Stay in place */
-    z-index: 2; /* Sit on top */
+    z-index: 3; /* Sit on top */
     padding-top: 100px; /* Location of the box */
     left: 0;
     top: 0;
@@ -186,11 +197,10 @@ button[type=submit]{
 
 .modal-content {
     background-color: #fefefe;
-    margin: auto;
     padding: 20px;
     border: 1px solid #888;
     width: 20%;
-    margin-top: 150px;
+    margin-left: 600px;
 }
   
   /* The Close Button */
@@ -228,7 +238,7 @@ table{
 }
 th{
     border: 1px;
-    width: 100px;
+    width: 250px;
     height: 50px;
     color: #313131;
 }
@@ -246,7 +256,7 @@ td > input[type=checkbox]{
 tr{
     background-color: white;
     border: 1px solid #D3D3D3;
-    text-align: left;
+    /* text-align: left; */
     height: 50px;
     color: #313131;
 }
@@ -268,6 +278,6 @@ th {
     background-color: red;
 }
 
-button:hover,a:hover,i:hover{
+button:hover,a:hover,i:hover,#box{
     cursor: pointer;
 }

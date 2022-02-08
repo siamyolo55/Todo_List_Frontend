@@ -1,6 +1,7 @@
 
 .left_area{
     background: url('../img/gray-bg.png');
+    height: 730px;
 }
 
 .right_area{
@@ -20,6 +21,7 @@ label{
 
 .login_box{
     font-family: 'Poppins',sans-serif;
+    margin-top: -200px;
 }
 
 .input_box{
@@ -81,6 +83,10 @@ label{
     cursor: pointer;
 }
 
-button:hover,input:hover,a:hover{
+button:hover,a:hover{
     cursor: pointer;
+}
+
+#signUp{
+    margin-left: 70px;
 }
