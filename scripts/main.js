@@ -64,7 +64,7 @@ async function userInfo(){
         //document.getElementById('wrong').style.display = "block"
         let snackbar = document.getElementById('snackbar')
         snackbar.className = "show"
-        snackbar.style.backgroundColor = "red"
+        snackbar.style.backgroundColor = "#D0342C"
         snackbar.style.color = "white"
         snackbar.style.borderRadius = '10px'
         snackbar.style.fontFamily = "'Poppins',sans-serif"

@@ -8,6 +8,7 @@ let priorityAsc = true
 let dateAsc = true
 let dueArrowDir = false
 let priorityArrowDir = false
+let taskLeft = 0
 
 // open Add Todo List Modal
 let modal = document.getElementById('view')
@@ -88,9 +89,11 @@ async function fillTable(flag = false) {
 
     let table = document.getElementById('todo')
     table.innerHTML = ""
-
+    taskLeft = 0
     for (let i = 0; i < todos.length; i++) {
         if (todos[i].check == true) continue
+        taskLeft++
+        console.log(taskLeft)
         let due = todos[i].date + ' ' + todos[i].time
         let priority
         let color
@@ -106,7 +109,7 @@ async function fillTable(flag = false) {
             priority = 'High'
             color = '#b03d32'
         }
-        let row = `<tr>
+        let row =   `<tr>
                         <td id="box"><input type="checkbox" id="c${i}" onclick="checkClick('${todos[i].uniq}',${i})" ${todos[i].check === true ? 'checked' : ''}></td>
                         <td style="width: 100px;text-align:left;">${i + 1}</td>
                         <td style="width: 170px;margin-left: 40px;text-align:left;">${todos[i].event}</td>
@@ -136,7 +139,7 @@ async function fillTable(flag = false) {
             priority = 'High'
             color = '#b03d32'
         }
-        let row = `<tr>
+        let row =   `<tr class="crossed">
                         <td id="box"><input type="checkbox" id="c${i}" onclick="checkClick('${todos[i].uniq}',${i})" ${todos[i].check === true ? 'checked' : ''}></td>
                         <td style="width: 100px;text-align:left;">${i + 1}</td>
                         <td style="width: 170px;margin-left: 40px;text-align:left;">${todos[i].event}</td>
@@ -149,6 +152,7 @@ async function fillTable(flag = false) {
                     </tr>`
         table.innerHTML += row
     }
+    updateTasksLeft()
 }
 
 async function checkClick(uni, i) {
@@ -158,8 +162,12 @@ async function checkClick(uni, i) {
         uniq: uniq,
         check: document.getElementById(`c${i}`).checked
     })
-    if (result.status == 200)
+    if (result.status == 200){
         todos = result.data.todos
+        taskLeft--
+        //console.log(taskLeft)
+        updateTasksLeft()
+    }
     await fillTable()
 }
 
@@ -169,7 +177,7 @@ async function addTodo() {
     let priority = document.getElementById('priority').value
     let time = document.getElementById('time').value
     let date = document.getElementById('date').value
-    let check = document.getElementById('check').checked
+    let check = false
 
     let result = await axios.post('http://127.0.0.1:4000/home', {
         email: userData.email,
@@ -181,8 +189,10 @@ async function addTodo() {
         check: check
     })
 
-    if (result.status == 200)
+    if (result.status == 200){
         todos = result.data.todos
+        updateTasksLeft()
+    }
 }
 
 async function updateEventDb(uni) {
@@ -207,6 +217,7 @@ async function updateEventDb(uni) {
 
     if (result.status == 200) {
         todos = result.data.todos
+        updateTasksLeft()
     }
 
     document.getElementById('update').style.display = "none"
@@ -215,8 +226,8 @@ async function updateEventDb(uni) {
 async function deleteEventDb(uni) {
     let rlt = await axios.delete(`http://127.0.0.1:4000/home?email=${userData.email}&uniq=${uni}`)
     if (rlt.status == 200) {
-        console.log('weeeee')
         todos = rlt.data.todos
+        updateTasksLeft()
     }
 }
 
@@ -334,7 +345,27 @@ function deleteEvent(uni) {
 }
 
 function logout() {
+    let snackbar = document.getElementById('snackbar')
+    snackbar.className = "show"
+    snackbar.style.backgroundColor = "green"
+    snackbar.style.color = "white"
+    snackbar.style.width = '200px'
+    snackbar.style.textAlign = 'left'
+    snackbar.style.fontFamily = "'Poppins',sans-serif"
+    snackbar.style.borderRadius = '10px'
+    snackbar.innerHTML = `<i class="far fa-check-circle" style="width:60px"></i> Logging Out`
+    setTimeout(function(){
+        snackbar.className = snackbar.className.replace("show","")
+    },3000)
     localStorage.clear()
+    setTimeout(() => {
+        window.location.href = '/index.html'
+    },1500)
+}
+
+function updateTasksLeft(){
+    let taskLeftTag = document.getElementById('task-left')
+    taskLeftTag.innerText = `Tasks Left : ${taskLeft}`
 }
 
 

@@ -1,7 +1,6 @@
 
 .left_area{
     background: url('../img/gray-bg.png');
-    /* height: 730px; */
     height: calc(100vh);
 }
 
@@ -15,6 +14,7 @@
     display: grid;
     grid-template-columns: 1fr 1fr;
     grid-template-rows: 950px;
+    max-height: calc(100vh);
 }
 
 label{

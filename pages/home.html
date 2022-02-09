@@ -18,7 +18,7 @@
             <ul id="nav-content">   
                 <li>Home</li>
                 <li>About</li>
-                <li><a id="logout" href="../index.html" onclick="logout();">Logout</a></li>
+                <li><a id="logout" href="#" onclick="logout();">Logout</a></li>
             </ul>
         </nav>
         <div class="content">
@@ -38,8 +38,12 @@
                     <tbody id="todo"></tbody>
                 </table>
             </div>
-            <div class="flexbox-container" style="align-items: center;">
-                <button type="submit" style="display: block; margin-left: 20px; width: 200px;" id="addTodo">Add to List</button>
+            <div class="button-counter">
+                <button type="submit" style="display: block; margin-left: 3px; width: 200px;align-items: left;" id="addTodo">Add to List</button>
+                <div id="task-para"><b id="task-left"></b></div>
+            </div>
+            <div class="flexbox-container" style="align-items: center">
+                
             </div>
         </div>
         <aside class="side">
@@ -65,8 +69,6 @@
                 <input id="date" type="date" name="date" required> <br>
                 <label>Time</label>
                 <input id="time" type="time" name="time" required><br>
-                <input id="check" type="checkbox" name="check">
-                <label>Check</label>
                 <button type="submit" id="add" value="Add"> Add </button> <br>
             </div>
         </div>
@@ -100,7 +102,9 @@
             </div>
         </div>
     </div>
-    
+    <div id="snackbar">
+        Bla Bla Bla
+    </div>
 </body>
 <script type="text/javascript" src="../scripts/home.js"></script>
 </html>
