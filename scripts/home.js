@@ -165,7 +165,6 @@ async function checkClick(uni, i) {
     if (result.status == 200){
         todos = result.data.todos
         taskLeft--
-        //console.log(taskLeft)
         updateTasksLeft()
     }
     await fillTable()
@@ -178,7 +177,7 @@ async function addTodo() {
     let time = document.getElementById('time').value
     let date = document.getElementById('date').value
     let check = false
-
+    // post req to add todo
     let result = await axios.post('http://127.0.0.1:4000/home', {
         email: userData.email,
         event: name,
@@ -204,6 +203,7 @@ async function updateEventDb(uni) {
     let priority = document.getElementById('priority2').value
     let check = document.getElementById('check2').checked
 
+    // put req to update todo data
     let result = await axios.put('http://127.0.0.1:4000/home', {
         email: userData.email,
         event: name,
@@ -375,6 +375,11 @@ addTodoToDb.addEventListener('click', async (e) => {
     e.preventDefault()
     await addTodo()
     await fillTable()
+    document.getElementById('name').value = ""
+    document.getElementById('des').value = ""
+    document.getElementById('priority').value = ""
+    document.getElementById('date').value = ""
+    document.getElementById('time').value = ""
     document.getElementById('view').style.display = "none"
 })
 
